@@ -141,7 +141,7 @@ def run_inference(input_paths: List[Path], input_images: List, landmarks_transfo
             # we'll save the last inversion and latent code
             results["result_images"].append(result_batch[0][-1])
             results["result_latents"][image_name] = latents[0][-1]
-            results["landmarks_transforms"].append(image_landmarks_transform)
+            results["landmarks_transforms"].append(image_landmarks_transform.cpu())
     return results
 
 
