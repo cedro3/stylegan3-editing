@@ -62,19 +62,19 @@ class Downloader:
 
 def download_dlib_models():
     if not os.path.exists("shape_predictor_68_face_landmarks.dat"):
-        print('Downloading files for aligning face image...')
+        #print('Downloading files for aligning face image...')
         os.system('wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2')
         os.system('bzip2 -dk shape_predictor_68_face_landmarks.dat.bz2')
-        print('Done.')
+        #print('Done.')
 
 
 def run_alignment(image_path):
     download_dlib_models()
     predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
     detector = dlib.get_frontal_face_detector()
-    print("Aligning image...")
+    #print("Aligning image...")
     aligned_image = align_face(filepath=str(image_path), detector=detector, predictor=predictor)
-    print(f"Finished aligning image: {image_path}")
+    #print(f"Finished aligning image: {image_path}")
     return aligned_image
 
 
@@ -82,9 +82,9 @@ def crop_image(image_path):
     download_dlib_models()
     predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
     detector = dlib.get_frontal_face_detector()
-    print("Cropping image...")
+    #print("Cropping image...")
     cropped_image = crop_face(filepath=str(image_path), detector=detector, predictor=predictor)
-    print(f"Finished cropping image: {image_path}")
+    #print(f"Finished cropping image: {image_path}")
     return cropped_image
 
 
@@ -92,9 +92,9 @@ def compute_transforms(aligned_path, cropped_path):
     download_dlib_models()
     predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
     detector = dlib.get_frontal_face_detector()
-    print("Computing landmarks-based transforms...")
+    #print("Computing landmarks-based transforms...")
     res = get_stylegan_transform(str(cropped_path), str(aligned_path), detector, predictor)
-    print("Done!")
+    #print("Done!")
     if res is None:
         print(f"Failed computing transforms on: {cropped_path}")
         return
