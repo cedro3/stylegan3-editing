@@ -85,10 +85,10 @@ class InterFaceGANVideoEditor(VideoEditor):
                 edit_latents_end.append(res_latent)
 
         # save latents
-        latents_path = self.opts.output_path / 'latents'
-        latents_path.mkdir(exist_ok=True, parents=True)
-        np.save(latents_path / f'latents_{edit_direction}_start.npy', edit_latents_start)
-        np.save(latents_path / f'latents_{edit_direction}_end.npy', edit_latents_end)
+        #latents_path = self.opts.output_path / 'latents'
+        #latents_path.mkdir(exist_ok=True, parents=True)
+        #np.save(latents_path / f'latents_{edit_direction}_start.npy', edit_latents_start)
+        #np.save(latents_path / f'latents_{edit_direction}_end.npy', edit_latents_end)
         return edit_images_start, edit_images_end, edit_latents_start, edit_latents_end
 
     def get_smoothed_edited_images(self, edit_latents: np.ndarray, smoothed_transforms: torch.tensor):
